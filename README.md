@@ -33,9 +33,7 @@ available on each player's profile. However, if implementing the functionality f
 in games proves to be too challenging, player statistics may instead 
 only be kept in their respective profile.
 
-## Main User Stories 
-- As a user, I want to be able to create new teams.
-- As a user, I want to be able to delete existing teams.
+## Main User Stories
 - As a user, I want to be able to add players to a team along with 
 their jersey number and position.
 - As a user, I want to be able to remove players from a team along with
@@ -44,10 +42,12 @@ their jersey number and position.
 - As a user, I want to see each player's total number of 
 points played, assists, and scores.
 - As a user, I want to see all the players on a team.
-- As a user, I want to create games with a title and result.
-- As a user, I want to delete existing games.
 
 ## "Stretch Goal" User Stories
+- As a user, I want to be able to create new teams.
+- As a user, I want to be able to delete existing teams.
+- As a user, I want to create games with a title and result.
+- As a user, I want to delete existing games.
 - As a user, I want to edit who played, scored (if own team scored),
   and assisted (if own team scored) on each point of a given game.
 - As a user, I want to see who played, scored (if own team scored),
