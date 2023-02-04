@@ -3,12 +3,14 @@ package ui;
 import model.Player;
 import model.Team;
 
-
+import java.util.Scanner;
 
 
 // Stat tracker application
 public class StatApp {
-    /*
+/*
+    private Team team;
+    private Scanner input;
 
     // EFFECTS: runs the stat tracking application
     public StatApp() {
@@ -51,6 +53,21 @@ public class StatApp {
         }
     }
 
+    // MODIFIES: this
+    // EFFECTS: initializes team
+    private void init() {
+        team = new Team("Ultimate Frisbee Team");
+        input = new Scanner(System.in);
+        input.useDelimiter("\n");
+    }
 
-     */
+    // EFFECTS: displays menu of options to user
+    private void displayMenu() {
+        System.out.println("\nSelect from:");
+        System.out.println("\td -> deposit");
+        System.out.println("\tw -> withdraw");
+        System.out.println("\tt -> transfer");
+        System.out.println("\tq -> quit");
+    }
+*/
 }
