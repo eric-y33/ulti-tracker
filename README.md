@@ -52,3 +52,8 @@ points played, assists, and scores.
   and assisted (if own team scored) on each point of a given game.
 - As a user, I want to see who played, scored (if own team scored),
   and assisted (if own team scored) on each point of a given game.
+
+---
+## Sources
+
+- https://github.students.cs.ubc.ca/CPSC210/TellerApp
