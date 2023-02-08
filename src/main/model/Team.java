@@ -1,43 +1,55 @@
 package model;
 
-import java.util.List;
+import java.util.ArrayList;
 
 // represents a team with a name and players,
 public class Team {
 
     private String name;
-    private List<Player> players;
+    private ArrayList<Player> players;
 
     // REQUIRES: teamName has a non-zero length
     // EFFECTS: name is set to teamName;
     //          players is set to an empty list of Player
     public Team(String teamName) {
-        // stub
+        name = teamName;
+        players = new ArrayList<Player>();
     }
 
     // REQUIRES: newTeamName has a non-zero length
     // MODIFIES: this
     // EFFECTS: name is set to newTeamName
     public void changeTeamName(String newTeamName) {
-        // stub
+        name = newTeamName;
     }
 
     // MODIFIES: this
     // EFFECTS: adds player to players
     public void addPlayer(Player player) {
-        // stub
+        players.add(player);
     }
 
     // MODIFIES: this
     // EFFECTS: removes player from players
     public void removePlayer(Player player) {
-        // stub
+        players.remove(player);
     }
 
     // EFFECTS: lists all players' names
-    public String viewAllPlayers() {
-        return ""; // stub
+    public ArrayList<String> getListOfPlayerNames() {
+        ArrayList<String> result = new ArrayList<String>();
+        for (Player player : players) {
+            result.add(player.getName());
+        }
+        return result;
     }
 
+    public  String getTeamName() {
+        return name;
+    }
+
+    public ArrayList<Player> getTeamPlayers() {
+        return players;
+    }
 
 }
