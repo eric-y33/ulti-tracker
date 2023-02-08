@@ -20,6 +20,12 @@ class PlayerTest {
     }
 
     @Test
+    void changeJerseyNumber(){
+        testPlayer.changeJerseyNumberTo(0);
+        assertEquals(0, testPlayer.getJerseyNumber());
+    }
+
+    @Test
     void changePosition(){
         testPlayer.changePositionTo("Cutter");
         assertEquals("Cutter", testPlayer.getPosition());

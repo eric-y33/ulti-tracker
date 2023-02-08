@@ -19,28 +19,33 @@ public class Player {
     //          position is set to playerPosition;
     //          pointsPlayed, assists, and goals is set to 0 as the default
     public Player(String playerName, int playerJerseyNumber, String playerPosition) {
-        // stub
+        name = playerName;
+        jerseyNumber = playerJerseyNumber;
+        position = playerPosition;
+        pointsPlayed = 0;
+        assists = 0;
+        goals = 0;
     }
 
     // REQUIRES: newName has a non-zero length
     // MODIFIES: this
     // EFFECTS: name is updated to newName
     public void changeNameTo(String newName) {
-        // stub
+        name = newName;
     }
 
     // REQUIRES: newNumber >= 0 and newNumber <= 99
     // MODIFIES: this
     // EFFECTS: jerseyNumber is updated to newNumber
     public void changeJerseyNumberTo(int newNumber) {
-        // stub
+        jerseyNumber = newNumber;
     }
 
     // REQUIRES: newPosition is "Cutter", "Handler", or "Hybrid"
     // MODIFIES: this
     // EFFECTS: position is updated to newPosition
     public void changePositionTo(String newPosition) {
-        // stub
+        position = newPosition;
     }
 
     // REQUIRES: newPoints is an integer >= (-1 * pointsPlayed)
@@ -48,7 +53,7 @@ public class Player {
     // EFFECTS: pointsPlayed is changed by newPoints
     //          (increases for positive integers and decreases for negative integers)
     public void changePointsPlayedBy(int newPoints) {
-        // stub
+        pointsPlayed += newPoints;
     }
 
     // REQUIRES: newAssists is an integer >= (-1 * assists)
@@ -56,7 +61,7 @@ public class Player {
     // EFFECTS: assists is changed by newAssists
     //          (increases for positive integers and decreases for negative integers)
     public void changeAssistsBy(int newAssists) {
-        // stub
+        assists += newAssists;
     }
 
     // REQUIRES: newGoals is an integer >= (-1 * assists)
@@ -64,30 +69,30 @@ public class Player {
     // EFFECTS: goals is changed by newGoals
     //          (increases for positive integers and decreases for negative integers)
     public void changeGoalsBy(int newGoals) {
-        // stub
+        goals += newGoals;
     }
 
     public String getName() {
-        return ""; // stub
+        return name;
     }
 
     public int getJerseyNumber() {
-        return 0; // stub
+        return jerseyNumber;
     }
 
     public String getPosition() {
-        return ""; // stub
+        return position;
     }
 
     public int getPointsPlayed() {
-        return 0; // stub
+        return pointsPlayed;
     }
 
     public int getAssists() {
-        return 0; // stub
+        return assists;
     }
 
     public int getGoals() {
-        return 0; // stub
+        return goals;
     }
 }

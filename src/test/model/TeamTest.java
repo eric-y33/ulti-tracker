@@ -37,7 +37,6 @@ public class TeamTest {
         assertEquals(testPlayer2, testTeam.getTeamPlayers().get(1));
     }
 
-    // questionable function, maybe delete this test and getListOfPlayerNames
     @Test
     void viewPlayerNames(){
         testTeam.addPlayer(testPlayer1);
