@@ -34,8 +34,6 @@ in games proves to be too challenging, player statistics may instead
 only be kept in their respective profile.
 
 ## Main User Stories
-- As a user, I want to be able to add players to a team along with 
-their jersey number and position.
 - As a user, I want to be able to remove players from a team along with
   their jersey number and position.
 - As a user, I want to be able to edit players' jersey number and position.
@@ -44,6 +42,8 @@ points played, assists, and scores.
 - As a user, I want to see all the players on a team.
 
 ## "Stretch Goal" User Stories
+- As a user, I want to be able to add players to a team along with
+  their jersey number and position.
 - As a user, I want to be able to create new teams.
 - As a user, I want to be able to delete existing teams.
 - As a user, I want to create games with a title and result.

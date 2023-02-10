@@ -8,7 +8,7 @@ import java.util.Scanner;
 
 // Stat tracker application
 public class StatApp {
-/*
+
     private Team team;
     private Scanner input;
 
@@ -64,10 +64,24 @@ public class StatApp {
     // EFFECTS: displays menu of options to user
     private void displayMenu() {
         System.out.println("\nSelect from:");
-        System.out.println("\td -> deposit");
-        System.out.println("\tw -> withdraw");
-        System.out.println("\tt -> transfer");
+        System.out.println("\tv -> view teams");
         System.out.println("\tq -> quit");
     }
-*/
+
+    private void viewTeams() {
+        // stub
+    }
+
+    private void selectTeam(String teamName) {
+        // stub
+    }
+
+    private void viewPlayers() {
+        // stub
+    }
+
+    private void viewPlayer() {
+        // stub
+    }
+
 }
