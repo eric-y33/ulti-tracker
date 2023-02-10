@@ -23,6 +23,8 @@ public class Team {
         name = newTeamName;
     }
 
+    // REQUIRES: player does not have the same name as
+    //           a player already in players
     // MODIFIES: this
     // EFFECTS: adds player to players
     public void addPlayer(Player player) {
@@ -44,12 +46,12 @@ public class Team {
         return result;
     }
 
-    public  String getTeamName() {
-        return name;
+    public String getTeamName() {
+        return this.name;
     }
 
     public ArrayList<Player> getTeamPlayers() {
-        return players;
+        return this.players;
     }
 
 }
