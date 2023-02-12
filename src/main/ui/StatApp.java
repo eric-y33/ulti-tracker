@@ -24,7 +24,7 @@ public class StatApp {
     // EFFECTS: processes user input
     private void runApp() {
         boolean keepGoing = true;
-        String command = null;
+        String command;
 
         init();
 
@@ -47,20 +47,26 @@ public class StatApp {
     // MODIFIES: this
     // EFFECTS: processes user command
     private void processCommand(String command) {
-        if (command.equals("v")) {
-            viewPlayers();
-        } else if (command.equals("e")) {
-            viewPlayer();
-        } else if (command.equals("a")) {
-            try {
-                addPlayerToTeam();
-            } catch (Exception e) {
-                System.out.println("Sorry, something went wrong.");
-            }
-        } else if (command.equals("d")) {
-            deletePlayerFromTeam();
-        } else {
-            System.out.println("Selection not valid...");
+        switch (command) {
+            case "v":
+                viewPlayers();
+                break;
+            case "e":
+                viewPlayer();
+                break;
+            case "a":
+                try {
+                    addPlayerToTeam();
+                } catch (Exception e) {
+                    System.out.println("Sorry, something went wrong.");
+                }
+                break;
+            case "d":
+                deletePlayerFromTeam();
+                break;
+            default:
+                System.out.println("Selection not valid...");
+                break;
         }
     }
 
@@ -91,88 +97,153 @@ public class StatApp {
     private void viewPlayers() {
         List<String> playerList;
         playerList = team.getListOfPlayerNames();
-        System.out.println("The players on this team are:");
-        for (String player : playerList) {
-            System.out.println("\t" + player);
+        if (playerList.size() == 0) {
+            System.out.println("There are no players on the team...");
+        } else {
+            System.out.println("The players on this team are:");
+            for (String player : playerList) {
+                System.out.println("\t" + player);
+            }
         }
     }
 
     // EFFECTS: displays player info and edit options
-    // TODO: put each method into its own option with the player to do it on passed into it
     private void viewPlayer() {
         System.out.println("Enter the name of the player you want to view/edit:");
         Player selected = selectPlayer();
         if (selected == null) {
             System.out.println("That player doesn't exist!");
         } else {
-            String subSelection = "";
-
             System.out.println("Name: " + selected.getName());
             System.out.println("Jersey number: " + selected.getJerseyNumber());
             System.out.println("Position: " + selected.getPosition());
             System.out.println("Points played: " + selected.getPointsPlayed());
             System.out.println("Assists: " + selected.getAssists());
             System.out.println("Goals: " + selected.getGoals());
+            editPlayer(selected);
+        }
+    }
 
-            while (!(subSelection.equals("n") || subSelection.equals("j") || subSelection.equals("p")
-                    || subSelection.equals("pp") || subSelection.equals("a") || subSelection.equals("g")
-                    || subSelection.equals("q"))) {
-                System.out.println("\nSelect from:");
-                System.out.println("\tn -> update name");
-                System.out.println("\tj -> update jersey number");
-                System.out.println("\tp -> update position");
-                System.out.println("\tpp -> update points played");
-                System.out.println("\ta -> update assists");
-                System.out.println("\tg -> update goals");
-                System.out.println("\tq -> quit to main menu");
-                subSelection = input.next();
-                subSelection = subSelection.toLowerCase();
-            }
+    // EFFECTS: displays edit options
+    @SuppressWarnings({"checkstyle:MethodLength", "checkstyle:SuppressWarnings"})
+    private void editPlayer(Player selected) {
+        String subSelection = "";
 
-            if (subSelection.equals("n")) {
-                String newName;
-                System.out.println("Change name to:");
-                newName = input.next();
-                if (newName.equals("")) {
-                    System.out.println("You can't make the name blank!");
-                } else {
-                    selected.changeNameTo(newName);
-                    System.out.println("Successfully changed name!");
-                }
-            } else if (subSelection.equals("j")) {
-                int newNumber;
-                System.out.println("Change jersey number to:");
-                newNumber = Integer.parseInt(input.next());
-                selected.changeJerseyNumberTo(newNumber);
-                System.out.println("Successfully changed number!");
-            } else if (subSelection.equals("p")) {
-                String newPosition;
-                System.out.println("Change position to:");
-                newPosition = input.next();
-                selected.changePositionTo(newPosition);
-                System.out.println("Successfully changed position!");
-            } else if (subSelection.equals("pp")) {
-                int newNumber;
-                System.out.println("Update points played by:");
-                newNumber = Integer.parseInt(input.next());
-                selected.changePointsPlayedBy(newNumber);
-                System.out.println("Successfully updated points played!");
-            } else if (subSelection.equals("a")) {
-                int newNumber;
-                System.out.println("Update assists by:");
-                newNumber = Integer.parseInt(input.next());
-                selected.changeAssistsBy(newNumber);
-                System.out.println("Successfully updated assists!");
-            } else if (subSelection.equals("g")) {
-                int newNumber;
-                System.out.println("Update goals by:");
-                newNumber = Integer.parseInt(input.next());
-                selected.changeJerseyNumberTo(newNumber);
-                System.out.println("Successfully updated goals!");
-            } else if (subSelection.equals("q")) {
+        while (!(subSelection.equals("n") || subSelection.equals("j") || subSelection.equals("p")
+                || subSelection.equals("pp") || subSelection.equals("a") || subSelection.equals("g")
+                || subSelection.equals("q"))) {
+            System.out.println("\nSelect from:");
+            System.out.println("\tn -> update name");
+            System.out.println("\tj -> update jersey number");
+            System.out.println("\tp -> update position");
+            System.out.println("\tpp -> update points played");
+            System.out.println("\ta -> update assists");
+            System.out.println("\tg -> update goals");
+            System.out.println("\tq -> quit to main menu");
+            subSelection = input.next();
+            subSelection = subSelection.toLowerCase();
+        }
+
+        switch (subSelection) {
+            case "n":
+                changeName(selected);
+                break;
+            case "j":
+                changeJerseyNumber(selected);
+                break;
+            case "p":
+                changePosition(selected);
+                break;
+            case "pp":
+                changePointsPlayed(selected);
+                break;
+            case "a":
+                changeAssists(selected);
+                break;
+            case "g":
+                changeGoals(selected);
+                break;
+            case "q":
                 System.out.println("Returning to main menu...");
-            }
+                break;
+        }
+    }
 
+    // EFFECTS: user can edit a selected player's name
+    private void changeName(Player selected) {
+        String newName;
+        System.out.println("Change name to:");
+        newName = input.next();
+        if (newName.equals("")) {
+            System.out.println("You can't make the name blank!");
+        } else {
+            selected.changeNameTo(newName);
+            System.out.println("Successfully changed name!");
+        }
+    }
+
+    // EFFECTS: user can edit a selected player's jersey number
+    private void changeJerseyNumber(Player selected) {
+        int newNumber;
+        System.out.println("Change jersey number to:");
+        newNumber = Integer.parseInt(input.next());
+        if (newNumber < 0 || newNumber > 99) {
+            System.out.println("Sorry, that's an invalid jersey number!");
+        } else {
+            selected.changeJerseyNumberTo(newNumber);
+            System.out.println("Successfully changed number!");
+        }
+    }
+
+    // EFFECTS: user can edit a selected player's position
+    private void changePosition(Player selected) {
+        String newPosition;
+        System.out.println("Change position to:");
+        newPosition = input.next();
+        if (!(newPosition.equals("Cutter") || newPosition.equals("Handler") || newPosition.equals("Hybrid"))) {
+            System.out.println("Sorry, position must be either \"Cutter\", \"Handler\", or \"Hybrid\"!");
+        } else {
+            selected.changePositionTo(newPosition);
+            System.out.println("Successfully changed position!");
+        }
+    }
+
+    // EFFECTS: user can edit a selected player's points played
+    private void changePointsPlayed(Player selected) {
+        int newNumber;
+        System.out.println("Update points played by:");
+        newNumber = Integer.parseInt(input.next());
+        if (newNumber < (-1 * selected.getPointsPlayed())) {
+            System.out.println("Sorry, that would make the total points played negative!");
+        } else {
+            selected.changePointsPlayedBy(newNumber);
+            System.out.println("Successfully updated points played!");
+        }
+    }
+
+    // EFFECTS: user can edit a selected player's assists
+    private void changeAssists(Player selected) {
+        int newNumber;
+        System.out.println("Update assists by:");
+        newNumber = Integer.parseInt(input.next());
+        if (newNumber < (-1 * selected.getAssists())) {
+            System.out.println("Sorry, that would make the total assists negative!");
+        } else {
+            selected.changeAssistsBy(newNumber);
+            System.out.println("Successfully updated assists!");
+        }
+    }
+
+    // EFFECTS: user can edit a selected player's goals
+    private void changeGoals(Player selected) {
+        int newNumber;
+        System.out.println("Update goals by:");
+        newNumber = Integer.parseInt(input.next());
+        if (newNumber < (-1 * selected.getGoals())) {
+            System.out.println("Sorry, that would make the total goals negative!");
+        } else {
+            selected.changeJerseyNumberTo(newNumber);
+            System.out.println("Successfully updated goals!");
         }
     }
 
@@ -193,21 +264,41 @@ public class StatApp {
     }
 
     // EFFECTS: adds a new player with their name, jersey number, and position
+    // NOTE: A built-in exception is thrown if a non-number is passed into playerNumber
+    @SuppressWarnings({"checkstyle:MethodLength", "checkstyle:SuppressWarnings"})
     private void addPlayerToTeam() throws Exception {
-        String playerName;
-        int playerNumber;
-        String playerPosition;
+        String playerName = "";
+        int playerNumber = -1;
+        String playerPosition = "";
 
-        System.out.println("Enter name of player to add:");
-        playerName = input.next();
-        System.out.println("Enter jersey number of player to add:");
-        playerNumber = Integer.parseInt(input.next());
-        System.out.println("Enter position of player to add:");
-        playerPosition = input.next();
+        while (playerName.equals("")) {
+            System.out.println("Enter name of player to add:");
+            playerName = input.next();
+            if (playerName.equals("")) {
+                System.out.println("You can't make the name blank!");
+            }
+        }
+
+        while (playerNumber < 0 || playerNumber > 99) {
+            System.out.println("Enter jersey number of player to add:");
+            playerNumber = Integer.parseInt(input.next());
+            if (playerNumber < 0 || playerNumber > 99) {
+                System.out.println("Sorry, that's an invalid jersey number!");
+            }
+        }
+
+        while (!(playerPosition.equals("Cutter") || playerPosition.equals("Handler")
+                || playerPosition.equals("Hybrid"))) {
+            System.out.println("Enter position of player to add:");
+            playerPosition = input.next();
+            if (!(playerPosition.equals("Cutter") || playerPosition.equals("Handler")
+                    || playerPosition.equals("Hybrid"))) {
+                System.out.println("Sorry, position must be either \"Cutter\", \"Handler\", or \"Hybrid\"!");
+            }
+        }
 
         team.addPlayer(new Player(playerName, playerNumber, playerPosition));
         System.out.println("Successfully added a new player!");
-
     }
 
     private void deletePlayerFromTeam() {
