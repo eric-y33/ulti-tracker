@@ -52,7 +52,11 @@ public class StatApp {
         } else if (command.equals("e")) {
             viewPlayer();
         } else if (command.equals("a")) {
-            addPlayerToTeam();
+            try {
+                addPlayerToTeam();
+            } catch (Exception e) {
+                System.out.println("Sorry, something went wrong.");
+            }
         } else if (command.equals("d")) {
             deletePlayerFromTeam();
         } else {
@@ -96,7 +100,7 @@ public class StatApp {
     // EFFECTS: displays player info and edit options
     // TODO: put each method into its own option with the player to do it on passed into it
     private void viewPlayer() {
-        System.out.println("Enter name of player to view:");
+        System.out.println("Enter the name of the player you want to view/edit:");
         Player selected = selectPlayer();
         if (selected == null) {
             System.out.println("That player doesn't exist!");
@@ -166,7 +170,7 @@ public class StatApp {
                 selected.changeJerseyNumberTo(newNumber);
                 System.out.println("Successfully updated goals!");
             } else if (subSelection.equals("q")) {
-                System.out.println("Returning to main menu!");
+                System.out.println("Returning to main menu...");
             }
 
         }
@@ -189,7 +193,7 @@ public class StatApp {
     }
 
     // EFFECTS: adds a new player with their name, jersey number, and position
-    private void addPlayerToTeam() {
+    private void addPlayerToTeam() throws Exception {
         String playerName;
         int playerNumber;
         String playerPosition;
@@ -209,7 +213,12 @@ public class StatApp {
     private void deletePlayerFromTeam() {
         System.out.println("Enter name of player to delete:");
         Player selected = selectPlayer();
-        team.removePlayer(selected);
+        if (selected == null) {
+            System.out.println("That player doesn't exist!");
+        } else {
+            team.removePlayer(selected);
+            System.out.println("Successfully removed!");
+        }
     }
 
 }
