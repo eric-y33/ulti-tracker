@@ -22,6 +22,7 @@ public class StatApp {
 
     // MODIFIES: this
     // EFFECTS: processes user input
+    // NOTE: A built-in exception is caught if non-number inputs are passed into certain commands
     private void runApp() {
         boolean keepGoing = true;
         String command;
@@ -36,7 +37,11 @@ public class StatApp {
             if (command.equals("q")) {
                 keepGoing = false;
             } else {
-                processCommand(command);
+                try {
+                    processCommand(command);
+                } catch (Exception e) {
+                    System.out.println("Sorry, something went wrong. Please try again.");
+                }
             }
 
         }
@@ -46,7 +51,7 @@ public class StatApp {
 
     // MODIFIES: this
     // EFFECTS: processes user command
-    private void processCommand(String command) {
+    private void processCommand(String command) throws Exception {
         switch (command) {
             case "v":
                 viewPlayers();
@@ -55,11 +60,7 @@ public class StatApp {
                 viewPlayer();
                 break;
             case "a":
-                try {
-                    addPlayerToTeam();
-                } catch (Exception e) {
-                    System.out.println("Sorry, something went wrong.");
-                }
+                addPlayerToTeam();
                 break;
             case "d":
                 deletePlayerFromTeam();
@@ -108,7 +109,7 @@ public class StatApp {
     }
 
     // EFFECTS: displays player info and edit options
-    private void viewPlayer() {
+    private void viewPlayer() throws Exception {
         System.out.println("Enter the name of the player you want to view/edit:");
         Player selected = selectPlayer();
         if (selected == null) {
@@ -126,7 +127,7 @@ public class StatApp {
 
     // EFFECTS: displays edit options
     @SuppressWarnings({"checkstyle:MethodLength", "checkstyle:SuppressWarnings"})
-    private void editPlayer(Player selected) {
+    private void editPlayer(Player selected) throws Exception {
         String subSelection = "";
 
         while (!(subSelection.equals("n") || subSelection.equals("j") || subSelection.equals("p")
@@ -183,7 +184,7 @@ public class StatApp {
     }
 
     // EFFECTS: user can edit a selected player's jersey number
-    private void changeJerseyNumber(Player selected) {
+    private void changeJerseyNumber(Player selected) throws Exception {
         int newNumber;
         System.out.println("Change jersey number to:");
         newNumber = Integer.parseInt(input.next());
@@ -208,8 +209,9 @@ public class StatApp {
         }
     }
 
-    // EFFECTS: user can edit a selected player's points played
-    private void changePointsPlayed(Player selected) {
+    // EFFECTS: user can edit a selected player's points played by a given integer (as long as the resulting
+    //          points played do not go below 0)
+    private void changePointsPlayed(Player selected) throws Exception {
         int newNumber;
         System.out.println("Update points played by:");
         newNumber = Integer.parseInt(input.next());
@@ -221,8 +223,9 @@ public class StatApp {
         }
     }
 
-    // EFFECTS: user can edit a selected player's assists
-    private void changeAssists(Player selected) {
+    // EFFECTS: user can edit a selected player's assists by a given integer (as long as the resulting
+    //          assists do not go below 0)
+    private void changeAssists(Player selected) throws Exception {
         int newNumber;
         System.out.println("Update assists by:");
         newNumber = Integer.parseInt(input.next());
@@ -234,8 +237,9 @@ public class StatApp {
         }
     }
 
-    // EFFECTS: user can edit a selected player's goals
-    private void changeGoals(Player selected) {
+    // EFFECTS: user can edit a selected player's goals by a given integer (as long as the resulting
+    //          goals do not go below 0)
+    private void changeGoals(Player selected) throws Exception {
         int newNumber;
         System.out.println("Update goals by:");
         newNumber = Integer.parseInt(input.next());
@@ -264,7 +268,6 @@ public class StatApp {
     }
 
     // EFFECTS: adds a new player with their name, jersey number, and position
-    // NOTE: A built-in exception is thrown if a non-number is passed into playerNumber
     @SuppressWarnings({"checkstyle:MethodLength", "checkstyle:SuppressWarnings"})
     private void addPlayerToTeam() throws Exception {
         String playerName = "";
