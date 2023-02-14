@@ -23,36 +23,27 @@ As the name suggests, this project aims to be a stat-tracking
 application for those who manage ultimate frisbee teams. Players usually have
 jersey numbers and designated positions as either cutters or handlers 
 (although sometimes both). During games, team managers or coaches 
-often keep track of who plays, scores, and assists on each point. 
+often keep track of who plays, assists, and scores on each point.
 
-This application will allow users to create teams along with
-their players' information. Ideally, users will then be able to create games tied to 
-a team and record game results and
-player data for each point, with total player statistics
-available on each player's profile. However, if implementing the functionality for each point
-in games proves to be too challenging, player statistics may instead 
-only be kept in their respective profile.
+This application will allow users to add multiple player profiles to a team and record their
+information. Users will then be able to see the names of all players on the team,
+update any player's profile or game statistics, and remove existing players from the team if needed.
 
-## Main User Stories
-- As a user, I want to be able to remove players from a team along with
+## Main User Stories (Implemented)
+- As a user, I want to see the names of all the players on a team.
+- As a user, I want to be able to see any individual player's name, jersey number,
+  position, points played, assists, and goals.
+- As a user, I want to be able to edit any individual player's name, jersey number,
+  position, points played, assists, and goals.
+- As a user, I want to be able to add new players to a team along with 
   their jersey number and position.
-- As a user, I want to be able to edit players' jersey number and position.
-- As a user, I want to see each player's total number of 
-points played, assists, and scores.
-- As a user, I want to see all the players on a team.
-
-## "Stretch Goal" User Stories
-- As a user, I want to be able to add players to a team along with
+- As a user, I want to be able to delete players from a team along with
   their jersey number and position.
+
+## "Stretch Goal" User Stories (Not Implemented)
+- As a user, I want to be able to change a team's name.
 - As a user, I want to be able to create new teams.
 - As a user, I want to be able to delete existing teams.
-- As a user, I want to create games with a title and result.
-- As a user, I want to delete existing games.
-- As a user, I want to edit who played, scored (if own team scored),
-  and assisted (if own team scored) on each point of a given game.
-- As a user, I want to see who played, scored (if own team scored),
-  and assisted (if own team scored) on each point of a given game.
-
 ---
 ## Sources
 
