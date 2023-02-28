@@ -246,7 +246,7 @@ public class StatApp {
         if (newNumber < (-1 * selected.getGoals())) {
             System.out.println("Sorry, that would make the total goals negative!");
         } else {
-            selected.changeJerseyNumberTo(newNumber);
+            selected.changeGoalsBy(newNumber);
             System.out.println("Successfully updated goals!");
         }
     }
