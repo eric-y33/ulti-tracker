@@ -1,9 +1,13 @@
 package model;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+import persistence.Writable;
+
 import java.util.ArrayList;
 
-// represents a team with a name and players,
-public class Team {
+// Represents a team with a name and players
+public class Team implements Writable {
 
     private String name;
     private ArrayList<Player> players;
@@ -54,4 +58,21 @@ public class Team {
         return this.players;
     }
 
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("team name", name);
+        json.put("players", playersToJson());
+        return json;
+    }
+
+    private JSONArray playersToJson() {
+        JSONArray jsonArray = new JSONArray();
+
+        for (Player p: players) {
+            jsonArray.put(p.toJson());
+        }
+
+        return jsonArray;
+    }
 }

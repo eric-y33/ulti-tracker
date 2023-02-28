@@ -1,9 +1,12 @@
 package model;
 
+import org.json.JSONObject;
+import persistence.Writable;
+
 // Represents an ultimate player with a name,
 // jersey number, position, points played,
 // assists, and goals
-public class Player {
+public class Player implements Writable {
     private String name;
     private int jerseyNumber;
     private String position;
@@ -94,5 +97,17 @@ public class Player {
 
     public int getGoals() {
         return goals;
+    }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("name", name);
+        json.put("jersey number", jerseyNumber);
+        json.put("position", position);
+        json.put("points played", pointsPlayed);
+        json.put("assists", assists);
+        json.put("goals", goals);
+        return json;
     }
 }
