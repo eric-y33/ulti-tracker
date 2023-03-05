@@ -1,0 +1,29 @@
+{
+    "team name": "Eric's Ultimate Frisbee Team",
+    "players": [
+        {
+            "jersey number": 33,
+            "points played": 20,
+            "assists": 5,
+            "name": "Eric",
+            "position": "Hybrid",
+            "goals": 0
+        },
+        {
+            "jersey number": 2,
+            "points played": 0,
+            "assists": 39,
+            "name": "Ben",
+            "position": "Handler",
+            "goals": 289
+        },
+        {
+            "jersey number": 28,
+            "points played": 0,
+            "assists": 0,
+            "name": "John",
+            "position": "Handler",
+            "goals": 0
+        }
+    ]
+}

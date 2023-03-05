@@ -5,6 +5,8 @@ import model.Team;
 import persistence.JsonReader;
 import persistence.JsonWriter;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -73,6 +75,12 @@ public class StatApp {
             case "d":
                 deletePlayerFromTeam();
                 break;
+            case "s":
+                saveTeam();
+                break;
+            case "l":
+                loadTeam();
+                break;
             default:
                 System.out.println("Selection not valid...");
                 break;
@@ -99,6 +107,8 @@ public class StatApp {
         System.out.println("\te -> view/edit a player's information");
         System.out.println("\ta -> add a new player");
         System.out.println("\td -> delete an existing player");
+        System.out.println("\ts -> save work room to file");
+        System.out.println("\tl -> load work room from file");
         System.out.println("\tq -> quit");
     }
 
@@ -320,6 +330,29 @@ public class StatApp {
         } else {
             team.removePlayer(selected);
             System.out.println("Successfully removed!");
+        }
+    }
+
+    // EFFECTS: saves the team to file
+    private void saveTeam() {
+        try {
+            jsonWriter.open();
+            jsonWriter.write(team);
+            jsonWriter.close();
+            System.out.println("Saved " + team.getTeamName() + " to " + JSON_STORE);
+        } catch (FileNotFoundException e) {
+            System.out.println("Unable to write to file: " + JSON_STORE);
+        }
+    }
+
+    // MODIFIES: this
+    // EFFECTS: loads team from file
+    private void loadTeam() {
+        try {
+            team = jsonReader.read();
+            System.out.println("Loaded " + team.getTeamName() + " from " + JSON_STORE);
+        } catch (IOException e) {
+            System.out.println("Unable to read from file: " + JSON_STORE);
         }
     }
 
