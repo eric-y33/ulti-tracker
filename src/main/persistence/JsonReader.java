@@ -24,7 +24,7 @@ public class JsonReader {
     public Team read() throws IOException {
         String jsonData = readFile(source);
         JSONObject jsonObject = new JSONObject(jsonData);
-        return parseWorkRoom(jsonObject);
+        return parseTeam(jsonObject);
     }
 
     // EFFECTS: reads source file as string and returns it
@@ -39,7 +39,7 @@ public class JsonReader {
     }
 
     // EFFECTS: parses team from JSON object and returns it
-    private Team parseWorkRoom(JSONObject jsonObject) {
+    private Team parseTeam(JSONObject jsonObject) {
         String name = jsonObject.getString("team name");
         Team t = new Team(name);
         addPlayers(t, jsonObject);

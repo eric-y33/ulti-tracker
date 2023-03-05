@@ -2,6 +2,8 @@ package ui;
 
 import model.Player;
 import model.Team;
+import persistence.JsonReader;
+import persistence.JsonWriter;
 
 import java.util.List;
 import java.util.Scanner;
@@ -10,13 +12,19 @@ import java.util.Scanner;
 // Stat tracker application
 public class StatApp {
 
+    private static final String JSON_STORE = "./data/team.json";
     private Team team;
     private Player player1;
     private Player player2;
     private Scanner input;
+    private JsonWriter jsonWriter;
+    private JsonReader jsonReader;
 
-    // EFFECTS: runs the stat tracking application
+    // EFFECTS: constructs team and runs stat tracking application
     public StatApp() {
+        input = new Scanner(System.in);
+        jsonWriter = new JsonWriter(JSON_STORE);
+        jsonReader = new JsonReader(JSON_STORE);
         runApp();
     }
 
