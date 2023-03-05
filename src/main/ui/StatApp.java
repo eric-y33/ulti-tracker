@@ -45,6 +45,7 @@ public class StatApp {
             command = command.toLowerCase();
 
             if (command.equals("q")) {
+                askToSaveBeforeQuitting();
                 keepGoing = false;
             } else {
                 try {
@@ -107,8 +108,8 @@ public class StatApp {
         System.out.println("\te -> view/edit a player's information");
         System.out.println("\ta -> add a new player");
         System.out.println("\td -> delete an existing player");
-        System.out.println("\ts -> save work room to file");
-        System.out.println("\tl -> load work room from file");
+        System.out.println("\ts -> save team to file");
+        System.out.println("\tl -> load team from file");
         System.out.println("\tq -> quit");
     }
 
@@ -356,4 +357,18 @@ public class StatApp {
         }
     }
 
+    // EFFECTS: asks user whether they would like to save their team or not
+    private void askToSaveBeforeQuitting() {
+        String decision = "";
+        while (!(decision.equals("y") || decision.equals("n"))) {
+            System.out.println("Would you like to save your current team? Any unsaved changes will be lost.");
+            System.out.println("\ty -> yes");
+            System.out.println("\tn -> no");
+            decision = input.next();
+            decision.toLowerCase();
+        }
+        if (decision.equals("y")) {
+            saveTeam();
+        }
+    }
 }

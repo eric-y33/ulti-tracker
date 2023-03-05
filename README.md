@@ -39,7 +39,7 @@ update any player's profile or game statistics, and remove existing players from
   their jersey number and position.
 - As a user, I want to be able to delete players from a team along with
   their jersey number and position.
-- As a user, I when I select quit from the main menu, I want to be
+- As a user, when I select quit from the main menu, I want to be
   reminded to save my team's information and have the option to do so or not.
 - As a user, when I start the application, I want to be given the option to
   load my team's information from file.
