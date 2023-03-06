@@ -19,7 +19,7 @@ public class JsonReader {
         this.source = source;
     }
 
-    // EFFECTS: reads workroom from file and returns it;
+    // EFFECTS: reads team from file and returns it;
     // throws IOException if an error occurs reading data from file
     public Team read() throws IOException {
         String jsonData = readFile(source);
