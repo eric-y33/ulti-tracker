@@ -32,6 +32,14 @@
             "name": "Will",
             "position": "Cutter",
             "goals": 0
+        },
+        {
+            "jersey number": 3,
+            "points played": 0,
+            "assists": 0,
+            "name": "E",
+            "position": "Cutter",
+            "goals": 0
         }
     ]
 }
