@@ -1,8 +1,6 @@
 package ui;
 
 import javax.swing.*;
-import model.Player;
-import model.Team;
 
 import java.awt.*;
 
@@ -20,7 +18,7 @@ public class GUI {
     private JButton load = new JButton("Load");
 
     private JList playerList = new JList();
-    private JTextField playerInfo = new JTextField("Test");
+    private JTextArea playerInfo = new JTextArea();
 
     private JButton addPlayer = new JButton("add a new player");
     private JButton removePlayer = new JButton("remove an existing player");
@@ -33,9 +31,9 @@ public class GUI {
 
         rootPanel.setLayout(new BorderLayout());
 
-        setupSaveOptions();
+        setupSaveOptionsPanel();
         setupPlayerPanel();
-        setupPlayerOptions();
+        setupPlayerOptionsPanel();
 
         rootPanel.add(saveOptions, BorderLayout.PAGE_START);
         rootPanel.add(playerPanel);
@@ -46,7 +44,7 @@ public class GUI {
         mainFrame.setVisible(true);
     }
 
-    private void setupSaveOptions() {
+    private void setupSaveOptionsPanel() {
         saveOptions.setLayout(new FlowLayout());
         saveOptions.add(save);
         saveOptions.add(load);
@@ -56,6 +54,21 @@ public class GUI {
 
         playerPanel.setBackground(Color.BLUE);
 
+        JScrollPane listScroller = adjustPlayerListComponent();
+
+        adjustPlayerInfoComponent();
+
+        playerPanel.add(listScroller, BorderLayout.WEST);
+        playerPanel.add(playerInfo, BorderLayout.EAST);
+    }
+
+    private void adjustPlayerInfoComponent() {
+        playerInfo.setPreferredSize(new Dimension(250, 200));
+        playerInfo.setEditable(false);
+        playerInfo.append("Test");
+    }
+
+    private JScrollPane adjustPlayerListComponent() {
         String data[]= { "Monday","Tuesday","Wednesday",
                 "Thursday","Friday","Saturday"};
 
@@ -66,15 +79,10 @@ public class GUI {
 
         JScrollPane listScroller = new JScrollPane(playerList);
         listScroller.setPreferredSize(new Dimension(250, 200));
-
-        playerInfo.setPreferredSize(new Dimension(250, 200));
-
-        playerInfo.setEditable(false);
-        playerPanel.add(listScroller, BorderLayout.WEST);
-        playerPanel.add(playerInfo, BorderLayout.EAST);
+        return listScroller;
     }
 
-    private void setupPlayerOptions() {
+    private void setupPlayerOptionsPanel() {
         playerOptions.setLayout(new FlowLayout());
         playerOptions.add(addPlayer);
         playerOptions.add(removePlayer);
