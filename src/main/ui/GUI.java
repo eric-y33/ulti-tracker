@@ -7,15 +7,18 @@ import persistence.JsonWriter;
 import javax.swing.*;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
 
 public class GUI {
 
-    private Team team;
+    private Team team = new Team("Default Team");
     private static final String JSON_STORE = "./data/team.json";
-    private JsonWriter jsonWriter = new JsonWriter(JSON_STORE);;
-    private JsonReader jsonReader = new JsonReader(JSON_STORE);;
+    private JsonWriter jsonWriter = new JsonWriter(JSON_STORE);
+    private JsonReader jsonReader = new JsonReader(JSON_STORE);
 
 
     private JFrame mainFrame = new JFrame("Ultimate Team Manager");
@@ -37,7 +40,7 @@ public class GUI {
 
     private GUI() {
 
-        loadData(); // make this run after pressing the load data button
+//        loadData(); // make this run after pressing the load data button
 
         mainFrame.setContentPane(rootPanel);
         mainFrame.setResizable(false);
@@ -49,6 +52,8 @@ public class GUI {
         setupPlayerPanel();
         setupPlayerOptionsPanel();
 
+        setupButtonFunctionality();
+
         rootPanel.add(saveOptions, BorderLayout.PAGE_START);
         rootPanel.add(playerPanel);
         rootPanel.add(playerOptions, BorderLayout.PAGE_END);
@@ -58,7 +63,6 @@ public class GUI {
         mainFrame.setVisible(true);
     }
 
-    // MODIFIES: this
     // EFFECTS: loads team from file
     private void loadData() {
         try {
@@ -67,6 +71,38 @@ public class GUI {
         } catch (IOException e) {
             System.out.println("Unable to read from file: " + JSON_STORE);
         }
+    }
+
+    private void saveData() {
+        try {
+            jsonWriter.open();
+            jsonWriter.write(team);
+            jsonWriter.close();
+            System.out.println("Saved " + team.getTeamName() + " to " + JSON_STORE);
+        } catch (FileNotFoundException e) {
+            System.out.println("Unable to write to file: " + JSON_STORE);
+        }
+    }
+
+    // EFFECTS: connects buttons to their functionality
+    private void setupButtonFunctionality() {
+        save.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                saveData();
+            }
+        });
+        load.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                loadData();
+                playerPanel.removeAll();
+                adjustPlayerListComponent();
+                setupPlayerPanel();
+                playerPanel.revalidate();
+                playerPanel.repaint();
+            }
+        });
     }
 
     // EFFECTS: sets up save options panel
@@ -96,10 +132,8 @@ public class GUI {
         playerInfo.append("Test");
     }
 
-    // EFFECTS: adjusts player list component to have the list of players
+    // EFFECTS: adjusts player list component to have the list of players and turns it into a ScrollPane
     private JScrollPane adjustPlayerListComponent() {
-//        String data[]= { "Monday","Tuesday","Wednesday",
-//                "Thursday","Friday","Saturday"};
 
         List<String> teamListOfPlayerNames = team.getListOfPlayerNames();
 
