@@ -109,6 +109,9 @@ public class GUI {
             public void actionPerformed(ActionEvent e) {
                 team.removePlayer(selectedPlayer);
                 refreshPlayerPanel();
+                JOptionPane.showMessageDialog(mainFrame,
+                        selectedPlayer.getName() + " has been successfully removed.", "",
+                        JOptionPane.INFORMATION_MESSAGE, checkmark);
             }
         });
     }

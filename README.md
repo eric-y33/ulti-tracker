@@ -51,9 +51,10 @@ update any player's profile or game statistics, and remove existing players from
 and seeing their information on the right hand side of the application.
 - You can generate the second required action related to adding players to a team by clicking "remove selected player"
 to remove the previously selected player form the team.
-- You can locate my visual component by clicking "Load", where a checkmark will appear in the popup 
-telling you that the stored team has successfully loaded.
-- You can save the state of my application by clicking "Save".
+- You can locate my visual component when clicking "remove selected player", where a checkmark will appear in the popup 
+telling you that the selected player has been successfully removed.
+- You can save the state of my application by clicking "Save" **(do not click on this with an empty team, 
+or else the empty team will be saved)**.
 - You can reload the state of my application by clicking "Load".
 
 
