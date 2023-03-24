@@ -5,6 +5,7 @@ import model.Team;
 import persistence.JsonReader;
 import persistence.JsonWriter;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -12,11 +13,14 @@ import javax.swing.event.ListSelectionListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
 
 public class GUI {
+
+    private static final ImageIcon checkmark = new ImageIcon("./data/checkmark.png");
 
     private Team team = new Team("Default Team");
     private static final String JSON_STORE = "./data/team.json";
@@ -42,7 +46,7 @@ public class GUI {
     private JButton addPlayer = new JButton("add a new player");
     private JButton removePlayer = new JButton("remove selected player");
 
-    Player selectedPlayer = null;
+    private Player selectedPlayer = null;
 
     private GUI() {
 
@@ -98,6 +102,7 @@ public class GUI {
         setupRemovePlayerButton();
     }
 
+    // EFFECTS: removes selected player on button click
     private void setupRemovePlayerButton() {
         removePlayer.addActionListener(new ActionListener() {
             @Override
@@ -108,46 +113,49 @@ public class GUI {
         });
     }
 
+    // EFFECTS: provides prompts to add a new player on button click
     private void setupAddPlayerButton() {
         addPlayer.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                showNewPlayerPrompts();
+                String name = JOptionPane.showInputDialog(mainFrame, "Enter the new player's name:");
+                String jerseyNumber = JOptionPane.showInputDialog(mainFrame,
+                        "Enter the new player's jersey number:");
+                String position = JOptionPane.showInputDialog(mainFrame, "Enter the new player's position:");
+                try {
+                    Player newPlayer = new Player(name, Integer.parseInt(jerseyNumber), position);
+                    team.addPlayer(newPlayer);
+                } catch (Exception f) {
+                    JOptionPane.showMessageDialog(mainFrame, "Something went wrong, new player not created.");
+                }
                 refreshPlayerPanel();
             }
         });
     }
 
+    // EFFECTS: saves data on button click
     private void setupSaveButton() {
         save.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 saveData();
+                JOptionPane.showMessageDialog(mainFrame, "Team successfully saved!", "",
+                        JOptionPane.INFORMATION_MESSAGE, checkmark);
             }
         });
     }
 
+    // EFFECTS: loads data on button click
     private void setupLoadButton() {
         load.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 loadData();
                 refreshPlayerPanel();
+                JOptionPane.showMessageDialog(mainFrame, "Team successfully loaded!", "",
+                        JOptionPane.INFORMATION_MESSAGE, checkmark);
             }
         });
-    }
-
-    private void showNewPlayerPrompts() {
-        String name = JOptionPane.showInputDialog(mainFrame, "Enter the new player's name:");
-        String jerseyNumber = JOptionPane.showInputDialog(mainFrame, "Enter the new player's jersey number:");
-        String position = JOptionPane.showInputDialog(mainFrame, "Enter the new player's position:");
-        try {
-            Player newPlayer = new Player(name, Integer.parseInt(jerseyNumber), position);
-            team.addPlayer(newPlayer);
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(mainFrame, "Something went wrong, new player not created.");
-        }
-
     }
 
     // EFFECTS: resets what is displayed in player panel

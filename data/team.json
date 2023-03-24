@@ -32,6 +32,94 @@
             "name": "Will",
             "position": "Cutter",
             "goals": 0
+        },
+        {
+            "jersey number": 12,
+            "points played": 0,
+            "assists": 0,
+            "name": "Carlo",
+            "position": "Handler",
+            "goals": 0
+        },
+        {
+            "jersey number": 10,
+            "points played": 0,
+            "assists": 0,
+            "name": "Daniel",
+            "position": "Handler",
+            "goals": 0
+        },
+        {
+            "jersey number": 70,
+            "points played": 0,
+            "assists": 0,
+            "name": "Terrence",
+            "position": "Cutter",
+            "goals": 0
+        },
+        {
+            "jersey number": 1,
+            "points played": 0,
+            "assists": 0,
+            "name": "Ian",
+            "position": "Cutter",
+            "goals": 0
+        },
+        {
+            "jersey number": 99,
+            "points played": 0,
+            "assists": 0,
+            "name": "Kobe",
+            "position": "Hybrid",
+            "goals": 0
+        },
+        {
+            "jersey number": 17,
+            "points played": 0,
+            "assists": 0,
+            "name": "Katrina",
+            "position": "Handler",
+            "goals": 0
+        },
+        {
+            "jersey number": 20,
+            "points played": 0,
+            "assists": 0,
+            "name": "Kyle",
+            "position": "Cutter",
+            "goals": 0
+        },
+        {
+            "jersey number": 25,
+            "points played": 0,
+            "assists": 0,
+            "name": "Marcus",
+            "position": "Hybrid",
+            "goals": 0
+        },
+        {
+            "jersey number": 30,
+            "points played": 0,
+            "assists": 0,
+            "name": "Max",
+            "position": "Handler",
+            "goals": 0
+        },
+        {
+            "jersey number": 22,
+            "points played": 0,
+            "assists": 0,
+            "name": "Tiffany",
+            "position": "Handler",
+            "goals": 0
+        },
+        {
+            "jersey number": 50,
+            "points played": 0,
+            "assists": 0,
+            "name": "Kylie",
+            "position": "Hybrid",
+            "goals": 0
         }
     ]
 }
