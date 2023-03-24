@@ -92,19 +92,13 @@ public class GUI {
 
     // EFFECTS: connects buttons to their functionality
     private void setupButtonFunctionality() {
-        save.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                saveData();
-            }
-        });
-        load.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                loadData();
-                refreshPlayerPanel();
-            }
-        });
+        setupSaveButton();
+        setupLoadButton();
+        setupAddPlayerButton();
+        setupRemovePlayerButton();
+    }
+
+    private void setupRemovePlayerButton() {
         removePlayer.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -112,10 +106,32 @@ public class GUI {
                 refreshPlayerPanel();
             }
         });
+    }
+
+    private void setupAddPlayerButton() {
         addPlayer.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 showNewPlayerPrompts();
+                refreshPlayerPanel();
+            }
+        });
+    }
+
+    private void setupSaveButton() {
+        save.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                saveData();
+            }
+        });
+    }
+
+    private void setupLoadButton() {
+        load.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                loadData();
                 refreshPlayerPanel();
             }
         });
