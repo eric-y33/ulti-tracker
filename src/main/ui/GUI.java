@@ -105,11 +105,16 @@ public class GUI {
         removePlayer.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                team.removePlayer(selectedPlayer);
-                refreshPlayerPanel();
-                JOptionPane.showMessageDialog(mainFrame,
-                        selectedPlayer.getName() + " has been successfully removed.", "",
-                        JOptionPane.INFORMATION_MESSAGE, checkmark);
+                try {
+                    team.removePlayer(selectedPlayer);
+                    refreshPlayerPanel();
+                    JOptionPane.showMessageDialog(mainFrame,
+                            selectedPlayer.getName() + " has been successfully removed.", "",
+                            JOptionPane.INFORMATION_MESSAGE, checkmark);
+                } catch (Exception f) {
+                    JOptionPane.showMessageDialog(mainFrame, "No player was selected.");
+                }
+
             }
         });
     }
