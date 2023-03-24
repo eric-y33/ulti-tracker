@@ -1,10 +1,13 @@
 package ui;
 
+import model.Player;
 import model.Team;
 import persistence.JsonReader;
 import persistence.JsonWriter;
 
 import javax.swing.*;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -27,6 +30,7 @@ public class GUI {
     private JPanel saveOptions = new JPanel();
     private JPanel playerPanel = new JPanel();
     private JPanel playerOptions = new JPanel();
+    private JScrollPane playerListScroller = new JScrollPane();
 
 
     private JButton save = new JButton("Save");
@@ -53,6 +57,7 @@ public class GUI {
         setupPlayerOptionsPanel();
 
         setupButtonFunctionality();
+        setupListScrollerSelectionFunctionality();
 
         rootPanel.add(saveOptions, BorderLayout.PAGE_START);
         rootPanel.add(playerPanel);
@@ -73,6 +78,7 @@ public class GUI {
         }
     }
 
+    // EFFECTS: saves team to file
     private void saveData() {
         try {
             jsonWriter.open();
@@ -99,10 +105,46 @@ public class GUI {
                 playerPanel.removeAll();
                 adjustPlayerListComponent();
                 setupPlayerPanel();
+                setupListScrollerSelectionFunctionality();
                 playerPanel.revalidate();
                 playerPanel.repaint();
             }
         });
+    }
+
+    // EFFECTS: connects clicking on a name to displaying the player's info
+    private void setupListScrollerSelectionFunctionality() {
+        playerList.addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                if (!e.getValueIsAdjusting()) {
+                    String playerName = playerList.getSelectedValue().toString();
+                    Player selectedPlayer = findPlayer(playerName);
+                    playerInfo.setText(arrangePlayerInfo(selectedPlayer));
+                }
+            }
+        });
+    }
+
+    // EFFECTS: finds player in team given the player's name
+    private Player findPlayer(String playerName) {
+        Player selectedPlayer = null;
+        for (Player player : team.getTeamPlayers()) {
+            if (playerName.equals(player.getName())) {
+                selectedPlayer = player;
+                break;
+            }
+        }
+        return selectedPlayer;
+    }
+
+    // EFFECTS: arranges player's info nicely for display
+    private String arrangePlayerInfo(Player selectedPlayer) {
+        return "Jersey number: " + selectedPlayer.getJerseyNumber()
+                + "\nPosition: " + selectedPlayer.getPosition()
+                + "\nPoints played: " + selectedPlayer.getPointsPlayed()
+                + "\nAssists: " + selectedPlayer.getAssists()
+                + "\nGoals: " + selectedPlayer.getGoals();
     }
 
     // EFFECTS: sets up save options panel
@@ -117,11 +159,10 @@ public class GUI {
 
         playerPanel.setBackground(Color.BLUE);
 
-        JScrollPane listScroller = adjustPlayerListComponent();
-
+        playerListScroller = adjustPlayerListComponent();
         adjustPlayerInfoComponent();
 
-        playerPanel.add(listScroller, BorderLayout.WEST);
+        playerPanel.add(playerListScroller, BorderLayout.WEST);
         playerPanel.add(playerInfo, BorderLayout.EAST);
     }
 
@@ -129,7 +170,7 @@ public class GUI {
     private void adjustPlayerInfoComponent() {
         playerInfo.setPreferredSize(new Dimension(250, 200));
         playerInfo.setEditable(false);
-        playerInfo.append("Test");
+//        playerInfo.append("Test");
     }
 
     // EFFECTS: adjusts player list component to have the list of players and turns it into a ScrollPane
