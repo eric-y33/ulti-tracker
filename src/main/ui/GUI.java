@@ -40,7 +40,9 @@ public class GUI {
     private JTextArea playerInfo = new JTextArea();
 
     private JButton addPlayer = new JButton("add a new player");
-    private JButton removePlayer = new JButton("remove an existing player");
+    private JButton removePlayer = new JButton("remove selected player");
+
+    Player selectedPlayer = null;
 
     private GUI() {
 
@@ -102,14 +104,27 @@ public class GUI {
             @Override
             public void actionPerformed(ActionEvent e) {
                 loadData();
-                playerPanel.removeAll();
-                adjustPlayerListComponent();
-                setupPlayerPanel();
-                setupListScrollerSelectionFunctionality();
-                playerPanel.revalidate();
-                playerPanel.repaint();
+                refreshPlayerPanel();
             }
         });
+        removePlayer.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                team.removePlayer(selectedPlayer);
+                refreshPlayerPanel();
+            }
+        });
+    }
+
+    // EFFECTS: resets what is displayed in player panel
+    private void refreshPlayerPanel() {
+        playerPanel.removeAll();
+        adjustPlayerListComponent();
+        setupPlayerPanel();
+        setupListScrollerSelectionFunctionality();
+        playerPanel.revalidate();
+        playerPanel.repaint();
+        playerInfo.setText("");
     }
 
     // EFFECTS: connects clicking on a name to displaying the player's info
@@ -119,7 +134,7 @@ public class GUI {
             public void valueChanged(ListSelectionEvent e) {
                 if (!e.getValueIsAdjusting()) {
                     String playerName = playerList.getSelectedValue().toString();
-                    Player selectedPlayer = findPlayer(playerName);
+                    selectedPlayer = findPlayer(playerName);
                     playerInfo.setText(arrangePlayerInfo(selectedPlayer));
                 }
             }
@@ -170,7 +185,6 @@ public class GUI {
     private void adjustPlayerInfoComponent() {
         playerInfo.setPreferredSize(new Dimension(250, 200));
         playerInfo.setEditable(false);
-//        playerInfo.append("Test");
     }
 
     // EFFECTS: adjusts player list component to have the list of players and turns it into a ScrollPane
