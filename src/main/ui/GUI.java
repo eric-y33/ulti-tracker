@@ -46,8 +46,6 @@ public class GUI {
 
     private GUI() {
 
-//        loadData(); // make this run after pressing the load data button
-
         mainFrame.setContentPane(rootPanel);
         mainFrame.setResizable(false);
         mainFrame.setMinimumSize(new java.awt.Dimension(500, 300));
@@ -114,6 +112,26 @@ public class GUI {
                 refreshPlayerPanel();
             }
         });
+        addPlayer.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                showNewPlayerPrompts();
+                refreshPlayerPanel();
+            }
+        });
+    }
+
+    private void showNewPlayerPrompts() {
+        String name = JOptionPane.showInputDialog(mainFrame, "Enter the new player's name:");
+        String jerseyNumber = JOptionPane.showInputDialog(mainFrame, "Enter the new player's jersey number:");
+        String position = JOptionPane.showInputDialog(mainFrame, "Enter the new player's position:");
+        try {
+            Player newPlayer = new Player(name, Integer.parseInt(jerseyNumber), position);
+            team.addPlayer(newPlayer);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(mainFrame, "Something went wrong, new player not created.");
+        }
+
     }
 
     // EFFECTS: resets what is displayed in player panel
