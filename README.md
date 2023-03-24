@@ -29,7 +29,7 @@ This application will allow users to add multiple player profiles to a team and 
 information. Users will then be able to see the names of all players on the team,
 update any player's profile or game statistics, and remove existing players from the team if needed.
 
-## Main User Stories (Implemented)
+## User Stories
 - As a user, I want to see the names of all the players on a team.
 - As a user, I want to be able to see any individual player's name, jersey number,
   position, points played, assists, and goals.
@@ -44,10 +44,23 @@ update any player's profile or game statistics, and remove existing players from
 - As a user, when I start the application, I want to be given the option to
   load my team's information from file.
 
-## "Stretch Goal" User Stories (Not Implemented)
-- As a user, I want to be able to change a team's name.
-- As a user, I want to be able to create new teams.
-- As a user, I want to be able to delete existing teams.
+## Instructions for Grader
+- You can add players to a team by clicking "add a new player" and putting in a new player's details 
+(ex. "Eric", "33", and "Handler" for each prompt).
+- You can generate the first required action related to adding players to a team by clicking on the newly created player
+and seeing their information on the right hand side of the application.
+- You can generate the second required action related to adding players to a team by clicking "remove selected player"
+to remove the previously selected player form the team.
+- You can locate my visual component by clicking "Load", where a checkmark will appear in the popup 
+telling you that the stored team has successfully loaded.
+- You can save the state of my application by clicking "Save".
+- You can reload the state of my application by clicking "Load".
+
+
+
+
+
+
 ---
 ## Sources
 
