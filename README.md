@@ -45,6 +45,7 @@ update any player's profile or game statistics, and remove existing players from
   load my team's information from file.
 
 ## Instructions for Grader
+- Start the GUI by running `GUI.java`.
 - You can add players to a team by clicking "add a new player" and putting in a new player's details 
 (ex. "Eric", "33", and "Handler" for each prompt).
 - You can generate the first required action related to adding players to a team by clicking on the newly created player
