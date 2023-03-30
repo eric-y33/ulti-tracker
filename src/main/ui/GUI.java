@@ -46,6 +46,7 @@ public class GUI {
 
     private Player selectedPlayer = null;
 
+    // EFFECTS: runs GUI application
     private GUI() {
 
         mainFrame.setContentPane(rootPanel);
