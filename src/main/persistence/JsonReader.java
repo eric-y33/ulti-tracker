@@ -12,7 +12,7 @@ import java.util.stream.Stream;
 import org.json.*;
 
 public class JsonReader {
-    private String source;
+    private final String source;
 
     // EFFECTS: constructs reader to read from source file
     public JsonReader(String source) {

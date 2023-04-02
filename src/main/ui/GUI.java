@@ -22,27 +22,27 @@ public class GUI {
 
     private Team team = new Team("Default Team");
     private static final String JSON_STORE = "./data/team.json";
-    private JsonWriter jsonWriter = new JsonWriter(JSON_STORE);
-    private JsonReader jsonReader = new JsonReader(JSON_STORE);
+    private final JsonWriter jsonWriter = new JsonWriter(JSON_STORE);
+    private final JsonReader jsonReader = new JsonReader(JSON_STORE);
 
 
-    private JFrame mainFrame = new JFrame("Ultimate Team Manager");
-    private JPanel rootPanel = new JPanel();
+    private final JFrame mainFrame = new JFrame("Ultimate Team Manager");
+    private final JPanel rootPanel = new JPanel();
 
-    private JPanel saveOptions = new JPanel();
-    private JPanel playerPanel = new JPanel();
-    private JPanel playerOptions = new JPanel();
+    private final JPanel saveOptions = new JPanel();
+    private final JPanel playerPanel = new JPanel();
+    private final JPanel playerOptions = new JPanel();
     private JScrollPane playerListScroller = new JScrollPane();
 
 
-    private JButton save = new JButton("Save");
-    private JButton load = new JButton("Load");
+    private final JButton save = new JButton("Save");
+    private final JButton load = new JButton("Load");
 
     private JList playerList = new JList();
-    private JTextArea playerInfo = new JTextArea();
+    private final JTextArea playerInfo = new JTextArea();
 
-    private JButton addPlayer = new JButton("add a new player");
-    private JButton removePlayer = new JButton("remove selected player");
+    private final JButton addPlayer = new JButton("add a new player");
+    private final JButton removePlayer = new JButton("remove selected player");
 
     private Player selectedPlayer = null;
 

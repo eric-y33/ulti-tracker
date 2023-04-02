@@ -19,8 +19,8 @@ public class StatApp {
     private Player player1;
     private Player player2;
     private Scanner input;
-    private JsonWriter jsonWriter;
-    private JsonReader jsonReader;
+    private final JsonWriter jsonWriter;
+    private final JsonReader jsonReader;
 
     // EFFECTS: constructs team and runs stat tracking application
     public StatApp() {

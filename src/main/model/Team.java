@@ -10,7 +10,7 @@ import java.util.ArrayList;
 public class Team implements Writable {
 
     private String name;
-    private ArrayList<Player> players;
+    private final ArrayList<Player> players;
 
     // REQUIRES: teamName has a non-zero length
     // EFFECTS: name is set to teamName;
