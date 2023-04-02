@@ -33,12 +33,14 @@ public class Team implements Writable {
     // EFFECTS: adds player to players
     public void addPlayer(Player player) {
         players.add(player);
+        EventLog.getInstance().logEvent(new Event("Added " + player.getName() + " to the team."));
     }
 
     // MODIFIES: this
     // EFFECTS: removes player from players
     public void removePlayer(Player player) {
         players.remove(player);
+        EventLog.getInstance().logEvent(new Event("Removed " + player.getName() + " from the team."));
     }
 
     // EFFECTS: lists all players' names
@@ -47,6 +49,7 @@ public class Team implements Writable {
         for (Player player : players) {
             result.add(player.getName());
         }
+        EventLog.getInstance().logEvent(new Event("Refreshed list of team player names."));
         return result;
     }
 

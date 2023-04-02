@@ -34,6 +34,7 @@ public class Player implements Writable {
     // MODIFIES: this
     // EFFECTS: name is updated to newName
     public void changeNameTo(String newName) {
+        EventLog.getInstance().logEvent(new Event("Updated " + getName() + "'s name to " + newName + "."));
         name = newName;
     }
 
@@ -42,6 +43,8 @@ public class Player implements Writable {
     // EFFECTS: jerseyNumber is updated to newNumber
     public void changeJerseyNumberTo(int newNumber) {
         jerseyNumber = newNumber;
+        EventLog.getInstance().logEvent(new Event(
+                "Updated " + getName() + "'s jersey number to " + newNumber + "."));
     }
 
     // REQUIRES: newPosition is "Cutter", "Handler", or "Hybrid"
@@ -49,6 +52,8 @@ public class Player implements Writable {
     // EFFECTS: position is updated to newPosition
     public void changePositionTo(String newPosition) {
         position = newPosition;
+        EventLog.getInstance().logEvent(new Event(
+                "Updated " + getName() + "'s position to " + newPosition + "."));
     }
 
     // REQUIRES: newPoints is an integer >= (-1 * pointsPlayed)
@@ -57,6 +62,8 @@ public class Player implements Writable {
     //          (increases for positive integers and decreases for negative integers)
     public void changePointsPlayedBy(int newPoints) {
         pointsPlayed += newPoints;
+        EventLog.getInstance().logEvent(new Event(
+                "Updated " + getName() + "'s points played by " + newPoints + "."));
     }
 
     // REQUIRES: newAssists is an integer >= (-1 * assists)
@@ -65,6 +72,8 @@ public class Player implements Writable {
     //          (increases for positive integers and decreases for negative integers)
     public void changeAssistsBy(int newAssists) {
         assists += newAssists;
+        EventLog.getInstance().logEvent(new Event(
+                "Updated " + getName() + "'s assists by " + newAssists + "."));
     }
 
     // REQUIRES: newGoals is an integer >= (-1 * assists)
@@ -73,6 +82,8 @@ public class Player implements Writable {
     //          (increases for positive integers and decreases for negative integers)
     public void changeGoalsBy(int newGoals) {
         goals += newGoals;
+        EventLog.getInstance().logEvent(new Event(
+                "Updated " + getName() + "'s goals by " + newGoals + "."));
     }
 
     public String getName() {
