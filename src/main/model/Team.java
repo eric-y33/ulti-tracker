@@ -49,7 +49,6 @@ public class Team implements Writable {
         for (Player player : players) {
             result.add(player.getName());
         }
-        EventLog.getInstance().logEvent(new Event("Refreshed list of team player names."));
         return result;
     }
 

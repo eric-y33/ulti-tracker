@@ -1,5 +1,7 @@
 package ui;
 
+import model.Event;
+import model.EventLog;
 import model.Player;
 import model.Team;
 import persistence.JsonReader;
@@ -10,8 +12,7 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
@@ -34,6 +35,7 @@ public class GUI {
     private final JPanel playerOptions = new JPanel();
     private JScrollPane playerListScroller = new JScrollPane();
 
+    private WindowListener windowListener;
 
     private final JButton save = new JButton("Save");
     private final JButton load = new JButton("Load");
@@ -52,6 +54,12 @@ public class GUI {
         mainFrame.setContentPane(rootPanel);
         mainFrame.setResizable(false);
         mainFrame.setMinimumSize(new java.awt.Dimension(500, 300));
+        mainFrame.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                printLogs();
+            }
+        });
 
         rootPanel.setLayout(new BorderLayout());
 
@@ -69,6 +77,13 @@ public class GUI {
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         mainFrame.pack();
         mainFrame.setVisible(true);
+    }
+
+    private void printLogs() {
+        EventLog el = EventLog.getInstance();
+        for (Event e : el) {
+            System.out.println("\n" + e.toString());
+        }
     }
 
     // EFFECTS: loads team from file

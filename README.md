@@ -58,15 +58,21 @@ telling you that the selected player has been successfully removed.
 or else the empty team will be saved)**.
 - You can reload the state of my application by clicking "Load".
 
+## Phase 4: Task 2
+Sun Apr 02 11:29:53 PDT 2023
+Added Eric to the team.
 
+Sun Apr 02 11:30:09 PDT 2023
+Added Will to the team.
 
-
-
+Sun Apr 02 11:30:12 PDT 2023
+Removed Will from the team.
 
 ---
 ## Sources
 
 - https://github.students.cs.ubc.ca/CPSC210/TellerApp
 - https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo
+- https://github.students.cs.ubc.ca/CPSC210/AlarmSystem
 - https://docs.oracle.com/javase/tutorial/uiswing/layout/border.html
 - https://clipartix.com/check-mark-clip-art-image-14891/
