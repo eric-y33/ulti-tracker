@@ -68,6 +68,17 @@ Added Will to the team.
 Sun Apr 02 11:30:12 PDT 2023
 Removed Will from the team.
 
+## Phase 4: Task 3
+If I were to refactor my program, I would mainly focus on splitting the GUI
+class into multiple classes. 
+Separating it into classes that handle the panels and components for
+saving, player information viewing, and team editing would increase
+the project's overall cohesion. 
+The main GUI class would then use these classes to help "glue together"
+all the pieces rather than provide functionality, and 
+making the GUI application run from a "Main" class would also be an appropriate
+change.
+
 ---
 ## Sources
 
