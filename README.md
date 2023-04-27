@@ -1,5 +1,4 @@
 # Team Stat Tracker for Ultimate Frisbee
-### A CPSC 210 Project by Eric Yee
 
 ## About Ultimate
 
