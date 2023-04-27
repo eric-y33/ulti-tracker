@@ -43,7 +43,7 @@ update any player's profile or game statistics, and remove existing players from
 - As a user, when I start the application, I want to be given the option to
   load my team's information from file.
 
-## Instructions for Grader
+## Instructions for Use
 - Start the GUI by running `GUI.java`.
 - You can add players to a team by clicking "add a new player" and putting in a new player's details 
 (ex. "Eric", "33", and "Handler" for each prompt).
@@ -56,27 +56,6 @@ telling you that the selected player has been successfully removed.
 - You can save the state of my application by clicking "Save" **(do not click on this with an empty team, 
 or else the empty team will be saved)**.
 - You can reload the state of my application by clicking "Load".
-
-## Phase 4: Task 2
-Sun Apr 02 11:29:53 PDT 2023
-Added Eric to the team.
-
-Sun Apr 02 11:30:09 PDT 2023
-Added Will to the team.
-
-Sun Apr 02 11:30:12 PDT 2023
-Removed Will from the team.
-
-## Phase 4: Task 3
-If I were to refactor my program, I would mainly focus on splitting the GUI
-class into multiple classes. 
-Separating it into classes that handle the panels and components for
-saving, player information viewing, and team editing would increase
-the project's overall cohesion. 
-The main GUI class would then use these classes to help "glue together"
-all the pieces rather than provide functionality, and 
-making the GUI application run from a "Main" class would also be an appropriate
-change.
 
 ---
 ## Sources
